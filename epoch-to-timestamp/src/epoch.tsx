@@ -1,8 +1,12 @@
-import { Clipboard, Alert, confirmAlert } from "@raycast/api";
+import { Clipboard, Alert, confirmAlert, showToast, Toast } from "@raycast/api";
 
 export default async function Command() {
   var epoch = Number(await Clipboard.readText())
   if (Number.isNaN(epoch)) {
+    showToast({
+        style: Toast.Style.Failure,
+        title: "No number in the clipboard."
+    })
     return
   }
   var date: Date
